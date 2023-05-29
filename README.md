@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-# CIMI
-
-## Please run run.py
-=======
 # A Causal Inspired Explanations for Understanding Black-box Models
 
 This project is for the paper: A Causal Inspired Explanations for Understanding Black-box Models, Proceedings of the
