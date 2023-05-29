@@ -41,4 +41,3 @@ arguments:
   --dataset DATASET_NAME
                         support: clickbait, hate, yelp, imdb.
 ```
->>>>>>> a507ac7 (init)
