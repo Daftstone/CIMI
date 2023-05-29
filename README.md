@@ -3,7 +3,7 @@
 This project is for the paper: A Causal Inspired Explanations for Understanding Black-box Models, Proceedings of the
 29th ACM SIGKDD Conference on Knowledge Discovery & Data Mining. 2023.
 
-The code was developed on Python 3.8 and Pytorch 1.12.1
+The code was developed on Python 3.8 and Pytorch 1.12.1.
 
 ## Usage
 
