@@ -7,7 +7,7 @@ The code was developed on Python 3.8 and Pytorch 1.12.1.
 
 ## Usage
 
-### 1. run train_bert.py: training black-box model Bert
+### 1. run train_bert.py: training black-box model BERT
 ```
 usage: python train_bert.py [--device GPU_ID] [--dataset DATASET_NAME]
 
