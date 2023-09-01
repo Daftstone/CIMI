@@ -18,20 +18,6 @@ from model import *
 args = parse_args(None)
 
 device = torch.device("cuda", args.device)
-<<<<<<< HEAD
-setup_seed()
-
-get_data_map = {'yelp': generate_yelp_data,'clickbait': generate_clickbait_data, 'imdb': generate_imdb_data,
-                'hate': generate_hate_data}
-
-text, evidence, label = get_data_map[args.dataset]()
-split = int(len(text) * 0.8)
-train_titles, train_evidences, train_labels = text[:split], evidence[:split], label[:split]
-test_titles, test_evidences, test_labels = text[split:], evidence[split:], label[split:]
-
-train_dataset = My_dataset(train_titles, train_evidences, train_labels)
-test_dataset = My_dataset(test_titles, test_evidences, test_labels)
-=======
 setup_seed()  # set random seed
 
 # get dataset
@@ -44,7 +30,6 @@ test_titles, test_labels = text[split:], label[split:]
 
 train_dataset = My_dataset(train_titles, train_labels)
 test_dataset = My_dataset(test_titles, test_labels)
->>>>>>> a507ac7 (init)
 
 model = Bert(args).to(device)
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-5)
@@ -58,11 +43,7 @@ for epoch in range(20):
     loader = Data.DataLoader(dataset=train_dataset, batch_size=8, num_workers=2, shuffle=True)
     pbar = tqdm.tqdm(loader, "train", total=len(train_dataset) // 8)
     acc_list = []
-<<<<<<< HEAD
-    for (batch_x, batch_ev, batch_y) in pbar:
-=======
     for (batch_x, batch_y) in pbar:
->>>>>>> a507ac7 (init)
         pred, detail_output, lengths = model(batch_x)
         batch_y = batch_y.to(device)
 
@@ -85,11 +66,7 @@ for epoch in range(20):
     acc_list = []
     pred_list = []
     label_list = []
-<<<<<<< HEAD
-    for (batch_x, batch_ev, batch_y) in pbar:
-=======
     for (batch_x, batch_y) in pbar:
->>>>>>> a507ac7 (init)
         pred, detail_output, lengths = model(batch_x)
         batch_y = batch_y.to(device)
 
@@ -104,8 +81,4 @@ for epoch in range(20):
     if (np.mean(acc_list) > best_acc):
         best_acc = np.mean(acc_list)
         torch.save(model.state_dict(), f"save/{args.dataset}_bert.pt")
-<<<<<<< HEAD
     print("after epoch %d, test acc=%f" % (epoch, np.mean(acc_list)))
-=======
-    print("after epoch %d, test acc=%f" % (epoch, np.mean(acc_list)))
->>>>>>> a507ac7 (init)

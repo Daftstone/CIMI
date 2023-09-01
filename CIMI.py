@@ -27,28 +27,16 @@ args = parse_args(None)
 device = torch.device("cuda", args.device)
 setup_seed()
 
-<<<<<<< HEAD
-text, evidence, label = get_data_map[args.dataset]()
-split = int(len(text) * 0.8)
-train_titles, train_evidences, train_labels = text[:split], evidence[:split], label[:split]
-test_titles, test_evidences, test_labels = text[split:], evidence[split:], label[split:]
-=======
 text, label = get_data_map[args.dataset]()
 split = int(len(text) * 0.8)
 train_titles, train_labels = text[:split], label[:split]
 test_titles, test_labels = text[split:], label[split:]
->>>>>>> a507ac7 (init)
 
 assert len(train_titles) == len(train_labels)
 assert len(test_titles) == len(test_labels)
 
-<<<<<<< HEAD
-train_dataset = My_dataset(train_titles, train_evidences, train_labels)
-test_dataset = My_dataset(test_titles, test_evidences, test_labels)
-=======
 train_dataset = My_dataset(train_titles, train_labels)
 test_dataset = My_dataset(test_titles, test_labels)
->>>>>>> a507ac7 (init)
 
 model = Bert_stack(args).to(device)
 optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
@@ -78,20 +66,11 @@ for epoch in range(0, nb_epochs):
     mse_list = []
     select_list = []
     trans_list = []
-<<<<<<< HEAD
-    for (batch_x, batch_ev, batch_y) in pbar:
-=======
     for (batch_x, batch_y) in pbar:
->>>>>>> a507ac7 (init)
         pred, pred1, mask, lengths, logits1, logits2, mask1, mask2 = model.forward_dis1(batch_x)
         pred_true, _, detail_output1 = model.forward_single(batch_x)
         batch_y = batch_y.to(device).float()
 
-<<<<<<< HEAD
-        # pred_true = torch.gt(pred_true, 0.5).float()
-
-=======
->>>>>>> a507ac7 (init)
         ce_loss = loss_mse(pred, pred_true) - loss_mse(pred1, pred_true)
         prob_loss = torch.mean(-F.logsigmoid(mask1 - mask2))
         dis_loss = generate_sim(F.softmax(logits1, dim=-1), F.softmax(logits2, dim=-1))
@@ -108,11 +87,7 @@ for epoch in range(0, nb_epochs):
         pred = pred.detach().cpu().numpy()
         acc = np.mean(np.argmax(pred, axis=1) == np.argmax(batch_y, axis=1))
         acc_list.append(acc)
-<<<<<<< HEAD
-        iou_list += IOU_list(model.tokenizer, batch_ev, batch_x, valid_mask.detach().cpu().numpy())
-=======
         iou_list += IOU_list(model.tokenizer, batch_x, batch_x, valid_mask.detach().cpu().numpy())
->>>>>>> a507ac7 (init)
 
         comp_list += difference_list(pred, pred_comp, batch_y)
         suff_list += difference_list(pred, pred_suff, batch_y)
@@ -145,11 +120,7 @@ for epoch in range(0, nb_epochs):
         comp_list = []
         suff_list = []
         length_list = []
-<<<<<<< HEAD
-        for (batch_x, batch_ev, batch_y) in pbar:
-=======
         for (batch_x, batch_y) in pbar:
->>>>>>> a507ac7 (init)
             pred, mask, lengths, _ = model(batch_x)
             batch_y = batch_y.to(device)
 
@@ -165,11 +136,7 @@ for epoch in range(0, nb_epochs):
             pred_comp = model.forward_mask(batch_x, torch.lt(valid_mask, 0.5)).detach().cpu().numpy()
             pred_suff = model.forward_mask(batch_x, torch.gt(valid_mask, 0.5)).detach().cpu().numpy()
 
-<<<<<<< HEAD
-            iou_list += IOU_list(model.tokenizer, batch_ev, batch_x, valid_mask.detach().cpu().numpy())
-=======
             iou_list += IOU_list(model.tokenizer, batch_x, batch_x, valid_mask.detach().cpu().numpy())
->>>>>>> a507ac7 (init)
 
             comp_list += difference_list(pred, pred_comp, batch_y)
             suff_list += difference_list(pred, pred_suff, batch_y)

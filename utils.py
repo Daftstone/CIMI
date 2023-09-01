@@ -32,10 +32,6 @@ def generate_imdb_data():
     data = pd.read_csv('data/IMDB/IMDB.csv')
     data = data.sample(len(data), replace=False)
     text = list(data['text'])
-<<<<<<< HEAD
-    evidences = list(data['text'])
-=======
->>>>>>> a507ac7 (init)
     labels = np.array(list(data['label']))
     idx = np.where(np.isnan(labels))[0]
     labels[idx] = 0
@@ -44,11 +40,7 @@ def generate_imdb_data():
     labels_onehot[idx1, 0] = 1
     idx2 = np.where(labels == 1)[0]
     labels_onehot[idx2, 1] = 1
-<<<<<<< HEAD
-    return text[:5000], evidences[:5000], labels_onehot[:5000]
-=======
     return text[:5000], labels_onehot[:5000]
->>>>>>> a507ac7 (init)
 
 
 def generate_hate_data():
@@ -56,10 +48,6 @@ def generate_hate_data():
     data = pd.read_csv('data/hate/labeled_data.csv')
     data = data.sample(len(data), replace=False)
     text = list(data['tweet'])
-<<<<<<< HEAD
-    evidences = list(data['tweet'])
-=======
->>>>>>> a507ac7 (init)
     labels = np.array(list(data['class']))
     idx = np.where(np.isnan(labels))[0]
     labels[idx] = 0
@@ -70,11 +58,7 @@ def generate_hate_data():
     labels_onehot[idx2, 1] = 1
     idx3 = np.where(labels == 2)[0]
     labels_onehot[idx3, 2] = 1
-<<<<<<< HEAD
-    return text[:5000], evidences[:5000], labels_onehot[:5000]
-=======
     return text[:5000], labels_onehot[:5000]
->>>>>>> a507ac7 (init)
 
 
 def generate_yelp_data():
@@ -84,10 +68,6 @@ def generate_yelp_data():
     data = train_data.append(test_data)
     data = data.sample(len(data), replace=False)
     text = list(data['text'])
-<<<<<<< HEAD
-    evidences = list(data['text'])
-=======
->>>>>>> a507ac7 (init)
     labels = np.array(list(data['label'])) - 1
     idx = np.where(np.isnan(labels))[0]
     labels[idx] = 0
@@ -96,11 +76,7 @@ def generate_yelp_data():
     labels_onehot[idx1, 0] = 1
     idx2 = np.where(labels == 1)[0]
     labels_onehot[idx2, 1] = 1
-<<<<<<< HEAD
-    return text[:5000], evidences[:5000], labels_onehot[:5000]
-=======
     return text[:5000], labels_onehot[:5000]
->>>>>>> a507ac7 (init)
 
 
 def generate_clickbait_data():
@@ -108,10 +84,6 @@ def generate_clickbait_data():
     data = pd.read_csv("data/clickbait/clickbait_data.csv", encoding='utf-8-sig')
     data = data.sample(len(data), replace=False)
     text = list(data['headline'])
-<<<<<<< HEAD
-    evidences = list(data['headline'])
-=======
->>>>>>> a507ac7 (init)
     labels = np.array(list(data['clickbait']))
     idx = np.where(np.isnan(labels))[0]
     labels[idx] = 0
@@ -120,11 +92,7 @@ def generate_clickbait_data():
     labels_onehot[idx1, 0] = 1
     idx2 = np.where(labels == 1)[0]
     labels_onehot[idx2, 1] = 1
-<<<<<<< HEAD
-    return text[:5000], evidences[:5000], labels_onehot[:5000]
-=======
     return text[:5000], labels_onehot[:5000]
->>>>>>> a507ac7 (init)
 
 
 def sequence_mask(lengths, max_len, device):
