@@ -7,7 +7,7 @@ The code was developed on Python 3.8 and Pytorch 1.12.1
 
 ## Usage
 
-### 1. run train_bert.py: training black-box model Bert
+### 1. run train_bert.py: training black-box model Bert (or use our pre-trained bert model: Download [bert][https://drive.google.com/file/d/1rHN8yYOysZ1574dfZ8vBhdfZPnjf7clc/view?usp=sharing] and put it in the save folder.)
 ```
 usage: python train_bert.py [--device GPU_ID] [--dataset DATASET_NAME]
 
